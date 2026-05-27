@@ -1,5 +1,6 @@
 ---
 import Hero from "../components/Hero";
+import LandingSections from "../components/LandingSections";
 import Topbar from "../components/Topbar";
 import site from "../data/site/zoftware.json";
 import theme from "../data/themes/zoftware.json";
@@ -13,15 +14,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <Topbar client:load site={site} theme={theme} />
   <main>
     <Hero client:load hero={site.hero} />
-    <section class="draft-section" id="zoftware-features-section">
-      <div class="page">
-        <p class="draft-section__eyebrow">V1 scaffold</p>
-        <h2>CMS-ready landing sections continue here.</h2>
-        <p>
-          This placeholder marks the next implementation area after the topbar
-          and hero are visually aligned with the original client.
-        </p>
-      </div>
-    </section>
+    <LandingSections sections={site.sections} />
   </main>
 </BaseLayout>

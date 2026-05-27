@@ -169,5 +169,94 @@
         "type": "compare"
       }
     ]
+  },
+  "sections": {
+    "smartSuite": {
+      "eyebrow": "SMART SUITE",
+      "heading": "Four tools. One decision engine.",
+      "description": "From strategy to final selection, every decision backed by data, not guesswork.",
+      "tools": [
+        {
+          "id": "strategy-builder",
+          "title": "Strategy Builder",
+          "description": "Full tech strategy and implementation roadmap tailored to your industry and scale.",
+          "badge": "AI-POWERED",
+          "metricValue": "5,000+",
+          "metricLabel": "MENA CXOs served",
+          "cta": "Get Strategy",
+          "href": "/strategy"
+        },
+        {
+          "id": "system-fit-score",
+          "title": "System Fit Score",
+          "description": "AI-ranked software matched to your profile - industry, size, budget, and features.",
+          "badge": "FIT SCORING",
+          "metricValue": "94%",
+          "metricLabel": "avg. match accuracy",
+          "cta": "Check Fit Score",
+          "href": "/search/form"
+        },
+        {
+          "id": "rfp-builder",
+          "title": "RFP Builder",
+          "description": "Pre-filled tech requirements document ready to share with vendors.",
+          "badge": "DOCUMENT",
+          "metricValue": "500+",
+          "metricLabel": "RFPs built this month",
+          "cta": "Build RFP",
+          "href": "/rfp-builder"
+        },
+        {
+          "id": "smart-compare",
+          "title": "Smart Compare",
+          "description": "Side-by-side AI comparison of up to 5 products on what matters most.",
+          "badge": "COMPARISON",
+          "metricValue": "2x",
+          "metricLabel": "faster final decision",
+          "cta": "Start Comparing",
+          "href": "/compare/product"
+        }
+      ]
+    },
+    "decisionImpact": {
+      "heading": "Proven to Make Software Decisions Faster, Clearer, and More Reliable",
+      "cards": [
+        {
+          "id": "techDecision",
+          "value": "40%",
+          "title": "faster tech decisions",
+          "description": "Build once and scale smoothly with a clear tech foundation that grows with your business, not against it."
+        },
+        {
+          "id": "customerExperience",
+          "value": "25%",
+          "title": "improvement in customer experience metrics",
+          "description": "Connected systems help teams move faster and deliver journeys customers actually feel."
+        },
+        {
+          "id": "successRate",
+          "value": "2x",
+          "title": "higher success rate in tech initiatives",
+          "description": "Strategy-led planning, right-fit tools, and strong execution significantly improve the chances of delivering projects on time and on value."
+        }
+      ]
+    },
+    "trustedSolutions": {
+      "heading": "Trusted solutions for Every Function & Industry",
+      "chips": [
+        { "id": "marketing", "label": "Marketing", "icon": "/v2/hero-section/categories-icon/marketing.svg" },
+        { "id": "cx", "label": "CX", "icon": "/v2/hero-section/categories-icon/cx.svg" },
+        { "id": "erp", "label": "ERP", "icon": "/v2/hero-section/categories-icon/erp.svg" },
+        { "id": "hr", "label": "HR", "icon": "/v2/hero-section/categories-icon/hr.svg" },
+        { "id": "finance", "label": "Finance", "icon": "/v2/hero-section/categories-icon/finance.svg" },
+        { "id": "project-management", "label": "Project Mgmt", "icon": "/v2/hero-section/categories-icon/project-management.svg" },
+        { "id": "cloud-it", "label": "Cloud & IT", "icon": "/v2/hero-section/categories-icon/cloud-and-it.svg" },
+        { "id": "retail", "label": "Retail", "icon": "/v2/hero-section/categories-icon/retail.svg" },
+        { "id": "ecommerce", "label": "Ecommerce", "icon": "/v2/hero-section/categories-icon/ecommerce.svg" },
+        { "id": "hospitality", "label": "Hospitality", "icon": "/v2/hero-section/categories-icon/hospitality.svg" },
+        { "id": "prof-services", "label": "Prof. Services", "icon": "/v2/hero-section/categories-icon/prof-services.svg" },
+        { "id": "logistics", "label": "Logistics", "icon": "/v2/hero-section/categories-icon/logistics.svg" }
+      ]
+    }
   }
 }

@@ -560,7 +560,7 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 720px;
+  min-height: 648px;
   padding-top: 150px;
   overflow: hidden;
   border-radius: 18px 18px 0 0;
@@ -1018,33 +1018,348 @@ img {
   object-fit: contain;
 }
 
-.draft-section {
-  padding: 80px 0;
-  background: #fff;
+.smart-suite-section {
+  margin-top: 76px;
+  margin-bottom: 16px;
+  scroll-margin-top: 128px;
 }
 
-.draft-section__eyebrow {
-  margin: 0 0 8px;
-  color: var(--color-brand);
+.section-heading {
+  max-width: 720px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-heading p {
+  margin: 0;
+  color: #155dfc;
   font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 500;
+  letter-spacing: 2.16px;
+  line-height: 16px;
   text-transform: uppercase;
 }
 
-.draft-section h2 {
-  max-width: 720px;
-  margin: 0 0 12px;
+.section-heading h2 {
+  margin: 4px 0 0;
   color: #101828;
-  font-size: 32px;
-  font-weight: 600;
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -1.04px;
+  line-height: 1.35;
 }
 
-.draft-section p {
-  max-width: 680px;
-  color: #4a5565;
-  font-size: 15px;
-  line-height: 1.7;
+.section-heading span {
+  display: block;
+  max-width: 640px;
+  margin: 4px auto 0;
+  color: #737373;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.smart-tools {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 1110px;
+  margin: 24px auto 0;
+}
+
+.smart-tool-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 225px;
+  padding: 16px;
+  border: 0.56px solid #e5e5e5;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  text-align: start;
+  transition: border 160ms ease, box-shadow 160ms ease;
+}
+
+.smart-tool-card:hover {
+  border: 3.56px solid #bce0ff;
+  box-shadow: 0 4px 16px rgba(41, 86, 130, 0.25);
+}
+
+.smart-tool-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.smart-tool-card__icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  border-radius: 8px;
+  background: #171717;
+  color: #fff;
+}
+
+.smart-tool-card__icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.smart-tool-card em {
+  min-width: 0;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: #f5f5f5;
+  color: #a1a1a1;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 15px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.smart-tool-card__body {
+  min-width: 0;
+  margin-top: 12px;
+}
+
+.smart-tool-card h3 {
+  margin: 0;
+  color: #171717;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19.25px;
+}
+
+.smart-tool-card p {
+  margin: 6px 0 0;
+  color: #737373;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 21.13px;
+}
+
+.smart-tool-card__bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 0.56px solid #f5f5f5;
+}
+
+.smart-tool-card__bottom strong,
+.smart-tool-card__bottom small {
+  display: block;
+}
+
+.smart-tool-card__bottom strong {
+  color: #171717;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.smart-tool-card__bottom small {
+  margin-top: 5px;
+  color: #a1a1a1;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 15.13px;
+}
+
+.smart-tool-card__bottom b {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 1px;
+  color: #155dfc;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 19.5px;
+  white-space: nowrap;
+}
+
+.decision-impact {
+  margin-top: 44px;
+}
+
+.decision-impact__header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.decision-impact h2 {
+  grid-column: 2;
+  max-width: 430px;
+  margin: 0;
+  color: #101828;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.decision-impact__arrows {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.decision-impact__arrows button {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 0.56px solid #e5e7eb;
+  border-radius: 4px;
+  background: #fff;
+  color: #a1a1a1;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.impact-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.impact-card {
+  position: relative;
+  min-height: 268px;
+  padding: 16px;
+  border: 1px solid #737373;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.impact-card__icon {
+  position: absolute;
+  top: 24px;
+  inset-inline-end: 24px;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #155dfc;
+}
+
+.impact-card__icon.is-green {
+  background: #ecfdf5;
+  color: #009966;
+}
+
+.impact-card__icon i {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 2px solid #737373;
+  border-radius: 20px;
+  font-style: normal;
+}
+
+.impact-card__icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+.impact-card__panel {
+  height: 100%;
+  padding: 79px 20px 16px;
+  border-radius: 16px;
+  background: #f6f6f6;
+}
+
+.impact-card strong {
+  display: block;
+  color: #0a0a0a;
+  font-size: 56px;
+  font-weight: 400;
+  letter-spacing: -2.52px;
+  line-height: 58.8px;
+}
+
+.impact-card h3 {
+  margin: 4px 0 6px;
+  color: rgba(23, 23, 23, 0.85);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.impact-card p {
+  margin: 0;
+  color: #787878;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.trusted-solutions {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.trusted-solutions h2 {
+  margin: 0;
+  color: #101828;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.solution-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.solution-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 0.56px solid #e5e7eb;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  color: #364153;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.solution-chip img {
+  width: 12px;
+  height: 12px;
+  filter: grayscale(1) contrast(2);
+}
+
+.solution-chip i {
+  position: absolute;
+  inset-inline-end: -7px;
+  top: 0;
+  display: block;
+  width: 1px;
+  height: 100%;
+  background: #d1d5dc;
 }
 
 @keyframes trusted-marquee {
@@ -1066,6 +1381,23 @@ img {
 
   .signin-button {
     padding-inline: 22px;
+  }
+
+  .smart-tools {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .impact-cards {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .impact-card {
+    flex: 0 0 min(495px, calc(100vw - 3rem));
+    scroll-snap-align: start;
   }
 }
 
@@ -1238,5 +1570,84 @@ img {
 
   .button--secondary {
     width: 244px;
+  }
+
+  .smart-suite-section {
+    margin-top: 64px;
+  }
+
+  .section-heading h2 {
+    font-size: 22px;
+  }
+
+  .section-heading span {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .smart-tools {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .smart-tool-card {
+    min-height: 205px;
+  }
+
+  .decision-impact {
+    margin-top: 36px;
+  }
+
+  .decision-impact__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .decision-impact h2 {
+    max-width: 310px;
+    font-size: 16px;
+  }
+
+  .decision-impact__arrows {
+    display: none;
+  }
+
+  .impact-card {
+    flex-basis: calc(100vw - 3rem);
+    min-height: 268px;
+    padding: 16px;
+  }
+
+  .impact-card__icon {
+    top: 16px;
+    inset-inline-end: 16px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .impact-card__icon i {
+    width: 44px;
+    height: 44px;
+  }
+
+  .impact-card__icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .impact-card__panel {
+    padding: 60px 16px 16px;
+  }
+
+  .impact-card strong {
+    font-size: 48px;
+    letter-spacing: -2.16px;
+    line-height: 50.4px;
+  }
+
+  .trusted-solutions {
+    margin-top: 24px;
   }
 }
