@@ -122,3 +122,26 @@ export function CheckCircleIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function SettingsIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" {...props}>
+      <path
+        d="M9.7 3.4c.6-1.9 4-1.9 4.6 0l.2.7a2.4 2.4 0 0 0 3 1.5l.7-.2c1.9-.6 3.6 2.3 2.3 3.8l-.5.5a2.4 2.4 0 0 0 0 3.4l.5.5c1.3 1.5-.4 4.4-2.3 3.8l-.7-.2a2.4 2.4 0 0 0-3 1.5l-.2.7c-.6 1.9-4 1.9-4.6 0l-.2-.7a2.4 2.4 0 0 0-3-1.5l-.7.2c-1.9.6-3.6-2.3-2.3-3.8l.5-.5a2.4 2.4 0 0 0 0-3.4l-.5-.5C2.2 7.7 3.9 4.8 5.8 5.4l.7.2a2.4 2.4 0 0 0 3-1.5l.2-.7Z"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.8"
+      />
+      <circle
+        cx="12"
+        cy="12"
+        r="3"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+    </svg>
+  );
+}

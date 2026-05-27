@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import theme from "../data/themes/zoftware.json";
+import { themes, themeStyle } from "../lib/themeEngine";
 
 type Props = {
   title: string;
@@ -8,35 +8,79 @@ type Props = {
 };
 
 const { title, description } = Astro.props;
+const defaultTheme = themes[0];
+const themeBootScript = `
+(() => {
+  const themes = ${JSON.stringify(themes)};
+  const key = "zoftware.activeThemeId";
+
+  function applySelectedTheme() {
+    const selectedId = window.localStorage.getItem(key) || themes[0].id;
+    const theme = themes.find((item) => item.id === selectedId) || themes[0];
+    const vars = {
+      "--color-background": theme.colors.background,
+      "--color-text": theme.colors.text,
+      "--color-muted-text": theme.colors.mutedText,
+      "--color-soft-text": theme.colors.softText,
+      "--color-brand": theme.colors.brand,
+      "--color-brand-dark": theme.colors.brandDark,
+      "--color-brand-soft": theme.colors.brandSoft,
+      "--color-border": theme.colors.border,
+      "--color-panel": theme.colors.panel,
+      "--color-panel-soft": theme.colors.panelSoft,
+      "--color-hero-start": theme.colors.heroStart,
+      "--color-accent": theme.colors.accent,
+      "--color-success": theme.colors.success,
+      "--font-body": theme.typography.body,
+      "--font-heading": theme.typography.heading,
+      "--layout-max-width": theme.layout.maxWidth,
+      "--radius-pill": theme.layout.radius.pill,
+      "--radius-panel": theme.layout.radius.panel,
+      "--radius-card": theme.layout.radius.card
+    };
+
+    Object.entries(vars).forEach(([name, value]) => {
+      document.documentElement.style.setProperty(name, value);
+    });
+
+    document.documentElement.dataset.theme = theme.id;
+    document.documentElement.dataset.radiusMode = theme.layout.radius.mode;
+
+    if (document.body) {
+      document.body.dataset.theme = theme.id;
+      document.body.dataset.radiusMode = theme.layout.radius.mode;
+    }
+  }
+
+  applySelectedTheme();
+  window.addEventListener("storage", (event) => {
+    if (!event.key || event.key === key) {
+      applySelectedTheme();
+    }
+  });
+  document.addEventListener("DOMContentLoaded", applySelectedTheme);
+})();
+`;
 ---
 
 <!doctype html>
-<html lang="en">
+<html
+  lang="en"
+  data-theme={defaultTheme.id}
+  data-radius-mode={defaultTheme.layout.radius.mode}
+  style={themeStyle(defaultTheme)}
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
+    <script is:inline set:html={themeBootScript}></script>
     <title>{title}</title>
   </head>
   <body
-    style={`
-      --color-background: ${theme.colors.background};
-      --color-text: ${theme.colors.text};
-      --color-muted-text: ${theme.colors.mutedText};
-      --color-soft-text: ${theme.colors.softText};
-      --color-brand: ${theme.colors.brand};
-      --color-brand-dark: ${theme.colors.brandDark};
-      --color-brand-soft: ${theme.colors.brandSoft};
-      --color-border: ${theme.colors.border};
-      --color-panel: ${theme.colors.panel};
-      --color-panel-soft: ${theme.colors.panelSoft};
-      --color-success: ${theme.colors.success};
-      --layout-max-width: ${theme.layout.maxWidth};
-      --radius-pill: ${theme.layout.radius.pill};
-      --radius-panel: ${theme.layout.radius.panel};
-      --radius-card: ${theme.layout.radius.card};
-    `}
+    data-theme={defaultTheme.id}
+    data-radius-mode={defaultTheme.layout.radius.mode}
   >
     <slot />
   </body>

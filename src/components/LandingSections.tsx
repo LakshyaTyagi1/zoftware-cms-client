@@ -5,6 +5,7 @@ import {
   SparkIcon,
   TargetIcon,
 } from "./icons";
+import { useCmsContent } from "../lib/useCmsContent";
 
 type SiteSections = typeof import("../data/site/zoftware.json")["sections"];
 
@@ -26,11 +27,13 @@ const impactIcons = {
 } as const;
 
 export default function LandingSections({ sections }: LandingSectionsProps) {
+  const content = useCmsContent(sections, "sections");
+
   return (
     <>
-      <SmartSuiteSection section={sections.smartSuite} />
-      <DecisionImpactSection section={sections.decisionImpact} />
-      <TrustedSolutionsSection section={sections.trustedSolutions} />
+      <SmartSuiteSection section={content.smartSuite} />
+      <DecisionImpactSection section={content.decisionImpact} />
+      <TrustedSolutionsSection section={content.trustedSolutions} />
     </>
   );
 }

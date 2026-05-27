@@ -1,28 +1,30 @@
 import { ArrowRightIcon, CheckCircleIcon, CompareIcon, FileIcon, SearchIcon, SparkIcon, TargetIcon } from "./icons";
+import { useCmsContent } from "../lib/useCmsContent";
 
 type HeroProps = {
   hero: typeof import("../data/site/zoftware.json")["hero"];
 };
 
 export default function Hero({ hero }: HeroProps) {
-  const featureCards = hero.featureCards;
+  const content = useCmsContent(hero, "hero");
+  const featureCards = content.featureCards;
   const activeCard = featureCards[0];
 
   return (
     <section className="hero">
       <div className="hero__inner page">
         <div className="hero__copy">
-          <h1>{hero.headline}</h1>
+          <h1>{content.headline}</h1>
           <div className="hero__actions" role="group" aria-label="Primary call to action links">
-            <a href={hero.primaryHref} className="button button--primary">
-              {hero.primaryCta}
+            <a href={content.primaryHref} className="button button--primary">
+              {content.primaryCta}
             </a>
-            <a href={hero.secondaryHref} className="button button--secondary">
-              {hero.secondaryCta}
+            <a href={content.secondaryHref} className="button button--secondary">
+              {content.secondaryCta}
             </a>
           </div>
           <div className="hero__badges">
-            {hero.badges.map((badge) => (
+            {content.badges.map((badge) => (
               <span key={badge.label}>
                 <BadgeIcon icon={badge.icon} />
                 {badge.label}
@@ -38,12 +40,12 @@ export default function Hero({ hero }: HeroProps) {
 
       <div className="trusted">
         <p>
-          {hero.trustedBy.usedBy}
-          <strong>{hero.trustedBy.cxoText}</strong>
+          {content.trustedBy.usedBy}
+          <strong>{content.trustedBy.cxoText}</strong>
         </p>
         <div className="trusted__marquee" aria-label="Trusted partner logos">
           <div className="trusted__track">
-            {[...hero.trustedBy.logos, ...hero.trustedBy.logos].map((logo, index) => (
+            {[...content.trustedBy.logos, ...content.trustedBy.logos].map((logo, index) => (
               <div className="trusted__item" key={`${logo.src}-${index}`}>
                 <span />
                 <figure>

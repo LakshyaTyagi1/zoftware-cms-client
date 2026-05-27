@@ -10,12 +10,17 @@ import {
   SparkIcon,
   TargetIcon,
 } from "./icons";
-import { getCategoryMenuData, type CategorySummary } from "../lib/api";
+import { getStoredThemeId, resolveTheme, THEME_CHANGE_EVENT, type ThemeConfig } from "../lib/themeEngine";
+import { useCmsContent } from "../lib/useCmsContent";
 
 type TopbarProps = {
   site: typeof import("../data/site/zoftware.json");
-  theme: typeof import("../data/themes/zoftware.json");
+  theme: ThemeConfig;
+  themes?: readonly ThemeConfig[];
 };
+
+type CategorySummary =
+  TopbarProps["site"]["topbar"]["categoriesDropdown"]["fallbackCategories"][number];
 
 const smartSuiteIcons = {
   "strategy-builder": SparkIcon,
@@ -24,38 +29,40 @@ const smartSuiteIcons = {
   "smart-compare": CompareIcon,
 } as const;
 
-export default function Topbar({ site, theme }: TopbarProps) {
+export default function Topbar({ site, theme, themes = [theme] }: TopbarProps) {
+  const content = useCmsContent(site);
+  const [activeTheme, setActiveTheme] = useState(theme);
   const [scrolled, setScrolled] = useState(false);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [partnersOpen, setPartnersOpen] = useState(false);
   const [smartSuiteOpen, setSmartSuiteOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [categories, setCategories] = useState<CategorySummary[]>(
-    site.topbar.categoriesDropdown.fallbackCategories,
+    content.topbar.categoriesDropdown.fallbackCategories,
   );
   const [activeIndex, setActiveIndex] = useState(0);
   const topbarRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    let cancelled = false;
+    setCategories(content.topbar.categoriesDropdown.fallbackCategories);
+    setActiveIndex(0);
+  }, [content.topbar.categoriesDropdown.fallbackCategories]);
 
-    getCategoryMenuData()
-      .then((menuData) => {
-        if (!cancelled && menuData.length > 0) {
-          setCategories(menuData);
-          setActiveIndex(0);
-        }
-      })
-      .catch(() => {
-        if (!cancelled) {
-          setCategories(site.topbar.categoriesDropdown.fallbackCategories);
-        }
-      });
+  useEffect(() => {
+    const syncTheme = () => {
+      const storedTheme = themes.find((item) => item.id === getStoredThemeId());
+      setActiveTheme(storedTheme ?? resolveTheme(getStoredThemeId()));
+    };
+
+    syncTheme();
+    window.addEventListener("storage", syncTheme);
+    window.addEventListener(THEME_CHANGE_EVENT, syncTheme);
 
     return () => {
-      cancelled = true;
+      window.removeEventListener("storage", syncTheme);
+      window.removeEventListener(THEME_CHANGE_EVENT, syncTheme);
     };
-  }, [site.topbar.categoriesDropdown.fallbackCategories]);
+  }, [themes]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -78,7 +85,10 @@ export default function Topbar({ site, theme }: TopbarProps) {
   }, []);
 
   const activeCategory = categories[activeIndex] ?? categories[0];
-  const topbar = site.topbar;
+  const topbar = content.topbar;
+  const brandLogo = "logo" in content.brand && typeof content.brand.logo === "string"
+    ? content.brand.logo
+    : activeTheme.assets.logo;
 
   const mobileLinks = useMemo(
     () => [
@@ -97,8 +107,8 @@ export default function Topbar({ site, theme }: TopbarProps) {
       className={`topbar-shell ${scrolled ? "topbar-shell--scrolled" : ""}`}
     >
       <div className="topbar">
-        <a href={topbar.links.home} className="topbar__logo-link" aria-label={site.brand.name}>
-          <img src={theme.assets.logo} alt={site.brand.logoAlt} className="topbar__logo" />
+        <a href={topbar.links.home} className="topbar__logo-link" aria-label={content.brand.name}>
+          <img src={brandLogo} alt={content.brand.logoAlt} className="topbar__logo" />
         </a>
 
         <button
@@ -219,8 +229,8 @@ export default function Topbar({ site, theme }: TopbarProps) {
       </div>
 
       <div className="mobile-topbar">
-        <a href={topbar.links.home} aria-label={site.brand.name}>
-          <img src={theme.assets.logo} alt={site.brand.logoAlt} />
+        <a href={topbar.links.home} aria-label={content.brand.name}>
+          <img src={brandLogo} alt={content.brand.logoAlt} />
         </a>
         <div className="mobile-topbar__actions">
           <a href={topbar.links.search} aria-label="Open smart search">
@@ -247,7 +257,7 @@ export default function Topbar({ site, theme }: TopbarProps) {
           onHoverCategory={(index) => setActiveIndex(index)}
           onClose={() => setCategoryOpen(false)}
           copy={topbar.categoriesDropdown}
-          ratingStar={theme.assets.ratingStar}
+          ratingStar={activeTheme.assets.ratingStar}
         />
       )}
 
@@ -260,7 +270,7 @@ export default function Topbar({ site, theme }: TopbarProps) {
         >
           <CloseIcon />
         </button>
-        <img src={theme.assets.logo} alt={site.brand.logoAlt} />
+        <img src={brandLogo} alt={content.brand.logoAlt} />
         <nav>
           {mobileLinks.map((link) => (
             <a key={link.href} href={link.href} onClick={() => setMobileOpen(false)}>
