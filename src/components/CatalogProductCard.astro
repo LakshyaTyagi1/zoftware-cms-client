@@ -1,0 +1,43 @@
+---
+import {
+  getProductInitials,
+  getLocalProductLogo,
+  getRating,
+  getReviewCount,
+  type CatalogProduct,
+} from "../lib/catalog";
+
+type Props = {
+  product: CatalogProduct;
+};
+
+const { product } = Astro.props;
+const rating = getRating(product);
+const reviews = getReviewCount(product);
+const logo = getLocalProductLogo(product);
+---
+
+<article class="catalog-product-card">
+  <a href={`/products/${product.weburl}/overview`} class="catalog-product-card__main">
+    <span class="catalog-logo-box">
+      {logo ? (
+        <img src={logo} alt={`${product.product_name} logo`} />
+      ) : (
+        <b>{getProductInitials(product.product_name)}</b>
+      )}
+    </span>
+    <span>
+      <strong>{product.product_name}</strong>
+      <small>{product.company || product.best_for || "Software vendor"}</small>
+      <p>{product.overview || product.description}</p>
+    </span>
+  </a>
+  <div class="catalog-product-card__meta">
+    <span>
+      <b>{rating.toFixed(1)}</b>
+      <small>{reviews ? `${reviews.toLocaleString()} reviews` : "Buyer score"}</small>
+    </span>
+    <a href={`/compare/product?products=${product.weburl}`}>Compare</a>
+    <a class="is-primary" href={`/products/${product.weburl}/overview`}>View Details</a>
+  </div>
+</article>

@@ -1,0 +1,12 @@
+---
+import AdminFloatingButton from "./AdminFloatingButton";
+import CatalogFooter from "./CatalogFooter.astro";
+import Topbar from "./Topbar";
+import site from "../data/site/zoftware.json";
+import { themes } from "../lib/themeEngine";
+---
+
+<Topbar client:load site={site} theme={themes[0]} themes={themes} />
+<slot />
+<CatalogFooter />
+<AdminFloatingButton />
