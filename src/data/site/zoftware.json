@@ -96,6 +96,21 @@
           "products": []
         },
         {
+          "name": "Cloud & Infrastructure",
+          "weburl": "cloud-and-infrastructure",
+          "children": [
+            { "name": "Cloud Management", "weburl": "cloud-management-software" },
+            { "name": "DevOps", "weburl": "devops-software" },
+            { "name": "Infrastructure Monitoring", "weburl": "infrastructure-monitoring-software" },
+            { "name": "Backup & Recovery", "weburl": "backup-recovery-software" }
+          ],
+          "products": [
+            { "product_name": "Datadog", "weburl": "datadog", "logo_url": "", "ratings": { "overall_rating": 4.5 } },
+            { "product_name": "New Relic", "weburl": "new-relic", "logo_url": "", "ratings": { "overall_rating": 4.4 } },
+            { "product_name": "AWS CloudWatch", "weburl": "aws-cloudwatch", "logo_url": "", "ratings": { "overall_rating": 4.3 } }
+          ]
+        },
+        {
           "name": "Marketing",
           "weburl": "marketing-software",
           "children": [
@@ -103,7 +118,11 @@
             { "name": "Marketing Automation", "weburl": "marketing-automation-software" },
             { "name": "Social Media Management", "weburl": "social-media-management-software" }
           ],
-          "products": []
+          "products": [
+            { "product_name": "Mailchimp", "weburl": "mailchimp", "logo_url": "", "ratings": { "overall_rating": 4.4 } },
+            { "product_name": "ActiveCampaign", "weburl": "activecampaign", "logo_url": "", "ratings": { "overall_rating": 4.5 } },
+            { "product_name": "Sprout Social", "weburl": "sprout-social", "logo_url": "", "ratings": { "overall_rating": 4.3 } }
+          ]
         }
       ]
     }
