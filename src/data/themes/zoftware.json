@@ -1,0 +1,31 @@
+{
+  "id": "zoftware",
+  "name": "Zoftware",
+  "colors": {
+    "background": "#ffffff",
+    "text": "#0a0a0a",
+    "mutedText": "#575757",
+    "softText": "#969696",
+    "brand": "#1447e6",
+    "brandDark": "#2c4e9b",
+    "brandSoft": "#eff6ff",
+    "border": "#e6e6e6",
+    "panel": "#ffffff",
+    "panelSoft": "#f9f9fc",
+    "success": "#00a63e"
+  },
+  "assets": {
+    "logo": "/static/full_logo.svg",
+    "miniLogo": "/static/mini_logo.svg",
+    "ratingStar": "/static/rating_star.svg",
+    "trustedVendorPath": "/v2/trusted-vendors"
+  },
+  "layout": {
+    "maxWidth": "1212px",
+    "radius": {
+      "pill": "80px",
+      "panel": "16px",
+      "card": "12px"
+    }
+  }
+}
