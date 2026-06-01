@@ -1,10 +1,11 @@
 import editorialTheme from "../data/themes/editorial.json";
+import monochromeTheme from "../data/themes/monochrome.json";
 import zoftwareTheme from "../data/themes/zoftware.json";
 
 export const THEME_STORAGE_KEY = "zoftware.activeThemeId";
 export const THEME_CHANGE_EVENT = "zoftware:theme-change";
 
-export const themes = [zoftwareTheme, editorialTheme] as const;
+export const themes = [zoftwareTheme, editorialTheme, monochromeTheme] as const;
 
 export type ThemeConfig = (typeof themes)[number];
 
