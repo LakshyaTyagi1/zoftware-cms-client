@@ -13,9 +13,10 @@ const themeBootScript = `
 (() => {
   const themes = ${JSON.stringify(themes)};
   const key = "zoftware.activeThemeId";
+  const previewThemeId = new URLSearchParams(window.location.search).get("previewTheme");
 
   function applySelectedTheme() {
-    const selectedId = window.localStorage.getItem(key) || themes[0].id;
+    const selectedId = previewThemeId || window.localStorage.getItem(key) || themes[0].id;
     const theme = themes.find((item) => item.id === selectedId) || themes[0];
     const vars = {
       "--color-background": theme.colors.background,
@@ -54,6 +55,10 @@ const themeBootScript = `
 
   applySelectedTheme();
   window.addEventListener("storage", (event) => {
+    if (previewThemeId) {
+      return;
+    }
+
     if (!event.key || event.key === key) {
       applySelectedTheme();
     }

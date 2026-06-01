@@ -102,6 +102,7 @@ export default function AdminApp({ site, themes }: AdminAppProps) {
   const [activeThemeId, setActiveThemeId] = useState(themes[0].id);
   const [draft, setDraft] = useState<Record<string, unknown>>({});
   const previewRef = useRef<HTMLIFrameElement | null>(null);
+  const defaultTheme = themes[0];
 
   const activeTheme = useMemo(
     () => themes.find((theme) => theme.id === activeThemeId) ?? themes[0],
@@ -113,13 +114,13 @@ export default function AdminApp({ site, themes }: AdminAppProps) {
     const storedTheme = resolveTheme(getStoredThemeId());
     setActiveThemeId(storedTheme.id);
     setDraft(readSiteDraft());
-    applyTheme(storedTheme);
-  }, []);
+    applyTheme(defaultTheme);
+  }, [defaultTheme]);
 
   function updateTheme(theme: ThemeConfig) {
     setActiveThemeId(theme.id);
     storeThemeId(theme.id);
-    applyTheme(theme);
+    applyTheme(defaultTheme);
     syncPreviewStorage(theme.id, draft);
   }
 
@@ -153,7 +154,7 @@ export default function AdminApp({ site, themes }: AdminAppProps) {
     <div className="admin-shell">
       <aside className="admin-sidebar" aria-label="Admin sections">
         <a href="/" className="admin-sidebar__brand">
-          <img src={activeTheme.assets.miniLogo} alt="" />
+          <img src={defaultTheme.assets.miniLogo} alt="" />
           <span>White-label CMS</span>
         </a>
         <nav>
@@ -253,13 +254,13 @@ export default function AdminApp({ site, themes }: AdminAppProps) {
               <b>{activeTheme.name}</b>
               Live landing preview
             </span>
-            <a href="/" target="_blank" rel="noreferrer">
+            <a href="/home" target="_blank" rel="noreferrer">
               Open site
             </a>
           </div>
           <iframe
             ref={previewRef}
-            src="/"
+            src="/home"
             title="Landing page preview"
             onLoad={() => syncPreviewStorage(activeThemeId, draft)}
           />
